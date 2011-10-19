@@ -6,8 +6,8 @@ import java.util.Date;
 //  !     !        !     !    !       +------------------------- Regel
 //  !     !        !     !    +--------------------------------- Detail Version (von-bis)
 //  !     !        !     +-------------------------------------- Version (von-bis)
-//  !     !        +-------------------------------------------- VZ bis (Zeitpunkt hier Monat.Jahr)
-//  !     +----------------------------------------------------- VZ von (Zeitpunkt hier Monat.Jahr)
+//  !     !        +-------------------------------------------- Annahme VZ Zeitraum bis (Zeitpunkt hier Monat.Jahr)
+//  !     +----------------------------------------------------- Annahme VZ Zeitraum von (Zeitpunkt hier Monat.Jahr)
 //  +----------------------------------------------------------- Art
 //
 public class AnnahmeRegel {
@@ -18,9 +18,9 @@ public class AnnahmeRegel {
     private Arten art;
 
     /**
-     * Veranlagungszeitraum (Bisher: 01.01.2005 12:00:00-01.01.2010 13:30:25)
+     * AnnahmeZeitraum (Bisher: 01.01.2005 12:00:00-01.01.2010 13:30:25)
      */
-    private Zeitraum veranlagungsZeitraum;
+    private Zeitraum annahmeZeitraum;
 
     /**
      * Der Versionsbereich für den die Regel gilt.
@@ -42,7 +42,7 @@ public class AnnahmeRegel {
     public AnnahmeRegel(Arten art, Zeitraum veranlagungsZeitraum, VersionsBereich versionVonBis, VersionsBereich detailVersionVonBis, Regel regel) {
         super();
         this.art = art;
-        this.veranlagungsZeitraum = veranlagungsZeitraum;
+        this.annahmeZeitraum = veranlagungsZeitraum;
         this.versionVonBis = versionVonBis;
         this.detailVersionVonBis = detailVersionVonBis;
         this.regel = regel;
@@ -62,7 +62,7 @@ public class AnnahmeRegel {
             return false;
         }
 
-        if (!getVeranlagungsZeitraum().contains(veranlagungsZeit)) {
+        if (!getAnnahmeZeitraum().contains(veranlagungsZeit)) {
             return false;
         }
 
@@ -81,12 +81,12 @@ public class AnnahmeRegel {
         this.art = art;
     }
 
-    public Zeitraum getVeranlagungsZeitraum() {
-        return veranlagungsZeitraum;
+    public Zeitraum getAnnahmeZeitraum() {
+        return annahmeZeitraum;
     }
 
-    public void setVeranlagungsZeitraum(Zeitraum veranlagungsZeitraum) {
-        this.veranlagungsZeitraum = veranlagungsZeitraum;
+    public void setAnnahmeZeitraum(Zeitraum annahmeZeitraum) {
+        this.annahmeZeitraum = annahmeZeitraum;
     }
 
     public VersionsBereich getVersionVonBis() {
