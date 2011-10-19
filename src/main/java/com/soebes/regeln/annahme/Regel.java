@@ -1,5 +1,6 @@
 package com.soebes.regeln.annahme;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -31,8 +32,14 @@ public class Regel {
         }
         
         if (this.equals(VZ_EING_PLUS_EINS)) {
-            //FIXME: Das stimmt noch nicht! Muss das nächste Jahr sein!!! (eventuell Eing+1?)
-            if (eingangsZeitpunkt.after(veranlagungszeitPunkt)) {
+
+            Calendar eingangsZeit = Calendar.getInstance();
+            eingangsZeit.setTime(eingangsZeitpunkt);
+
+            Calendar veranlagung = Calendar.getInstance();
+            veranlagung.setTime(veranlagungszeitPunkt);
+            
+            if (eingangsZeit.get(Calendar.YEAR) > veranlagung.get(Calendar.YEAR)) {
                 return true;
             }
         }

@@ -13,11 +13,11 @@ import java.util.Map;
  * @author kama
  *
  */
-public class RegelWerk {
+public class AnnahmeRegelWerk {
     
     private Map<Arten, ArrayList<AnnahmeRegel>> annahmeRegeln;
     
-    public RegelWerk() {
+    public AnnahmeRegelWerk() {
         annahmeRegeln = new HashMap<Arten, ArrayList<AnnahmeRegel>>();
     }
     
