@@ -14,7 +14,7 @@ import java.util.Map;
  *
  */
 public class AnnahmeRegelWerk {
-    
+
     private Map<Arten, ArrayList<AnnahmeRegel>> annahmeRegeln;
     
     public AnnahmeRegelWerk() {

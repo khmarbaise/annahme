@@ -1,6 +1,10 @@
 package com.soebes.regeln.parser;
 
+import static org.testng.Assert.assertTrue;
+
 import org.testng.annotations.Test;
+
+import com.soebes.regeln.annahme.Arten;
 
 public class ArtParserTest {
 
@@ -13,6 +17,13 @@ public class ArtParserTest {
     @Test
     public void bekannteArt() throws UnbekannteArtException {
         ArtParser p = new ArtParser();
-        p.parse("A");
+        Arten a = p.parse("A");
+        assertTrue(a.equals(Arten.A));
+    }
+
+    @Test(expectedExceptions = {UnbekannteArtException.class} )
+    public void bekannteArtKleinGeschrieben() throws UnbekannteArtException {
+        ArtParser p = new ArtParser();
+        p.parse("a");
     }
 }

@@ -3,12 +3,12 @@ package com.soebes.regeln.annahme;
 import java.util.Date;
 
 // AA, 02.2010-09.2099, 1-2, 1-3, [XRegeln|gelöscht|(leer)]
-//  !     !        !     !    !       +------------------------- Regel
-//  !     !        !     !    +--------------------------------- Detail Version (von-bis)
-//  !     !        !     +-------------------------------------- Version (von-bis)
-//  !     !        +-------------------------------------------- Annahme VZ Zeitraum bis (Zeitpunkt hier Monat.Jahr)
-//  !     +----------------------------------------------------- Annahme VZ Zeitraum von (Zeitpunkt hier Monat.Jahr)
-//  +----------------------------------------------------------- Art
+// !     !        !     !    !       +------------------------- Regel
+// !     !        !     !    +--------------------------------- Detail Version (von-bis)
+// !     !        !     +-------------------------------------- Version (von-bis)
+// !     !        +-------------------------------------------- Annahme VZ Zeitraum bis (Zeitpunkt hier Monat.Jahr)
+// !     +----------------------------------------------------- Annahme VZ Zeitraum von (Zeitpunkt hier Monat.Jahr)
+// +----------------------------------------------------------- Art
 //
 public class AnnahmeRegel {
 
@@ -38,6 +38,13 @@ public class AnnahmeRegel {
      */
     private Regel regel;
 
+    public AnnahmeRegel() {
+        setArt(Arten.A);
+        setAnnahmeZeitraum(null);
+        setVersionVonBis(null);
+        setDetailVersionVonBis(null);
+        setRegel(Regel.NULL_REGEL);
+    }
 
     public AnnahmeRegel(Arten art, Zeitraum veranlagungsZeitraum, VersionsBereich versionVonBis, VersionsBereich detailVersionVonBis, Regel regel) {
         super();
