@@ -17,7 +17,7 @@ public class ZeitpunktParserTest extends TestBase {
         
         Date result = zpp.parseVon(regel);
 
-        assertEquals(result, parseDate("01.02.2010 00:00:00"));
+        assertEquals(result, parseDate("01.02.2010 00:00:00.000"));
     }
 
     @Test
@@ -27,7 +27,7 @@ public class ZeitpunktParserTest extends TestBase {
 
         Date result = zpp.parseVon(regel);
 
-        assertEquals(result, parseDate("01.02.2010 00:00:00"));
+        assertEquals(result, parseDate("01.02.2010 00:00:00.000"));
     }
 
     @Test
@@ -37,7 +37,7 @@ public class ZeitpunktParserTest extends TestBase {
         
         Date result = zpp.parseVon(regel);
 
-        assertEquals(result, parseDate("01.01.2010 00:00:00"));
+        assertEquals(result, parseDate("01.01.2010 00:00:00.000"));
     }
 
     @Test
@@ -46,7 +46,7 @@ public class ZeitpunktParserTest extends TestBase {
         ZeitpunktParser zpp = new ZeitpunktParser();
         
         Date result = zpp.parseBis(regel);
-        Date expected = parseDate("31.12.2010 23:59:59");
+        Date expected = parseDate("31.12.2010 23:59:59.999");
         assertEquals(result, expected);
     }
 
@@ -56,7 +56,7 @@ public class ZeitpunktParserTest extends TestBase {
         ZeitpunktParser zpp = new ZeitpunktParser();
         
         Date result = zpp.parseBis(regel);
-        Date expected = parseDate("28.02.2010 23:59:59");
+        Date expected = parseDate("28.02.2010 23:59:59.999");
         assertEquals(result, expected);
     }
 

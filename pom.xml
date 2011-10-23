@@ -11,6 +11,12 @@
   <name>Annahme Regeln</name>
   <url>http://www.soebes.de</url>
 
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+
   <build>
     <pluginManagement>
       <plugins>

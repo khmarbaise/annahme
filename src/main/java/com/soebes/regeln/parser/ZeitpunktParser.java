@@ -9,15 +9,15 @@ import java.util.IllegalFormatException;
 import java.util.Locale;
 
 public class ZeitpunktParser {
-//            DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+    private Calendar calendar = Calendar.getInstance(Locale.GERMANY);
 
-    public Date parseVon(String content) throws UngueltigesDatumException {
+    public Date parseVon(String vonAngabe) throws UngueltigesDatumException {
         Date result = null;
         try {
-            result = parseMonatJahr(content);
+            result = parseMonatJahr(vonAngabe);
         } catch (UngueltigesDatumException e) {
             try {
-                result = parseJahr(content);
+                result = parseJahr(vonAngabe);
             } catch (UngueltigesDatumException e1) {
                 throw new UngueltigesDatumException(e1);
             }
@@ -25,33 +25,38 @@ public class ZeitpunktParser {
         return result;
     }
 
-    public Date parseBis(String content) throws UngueltigesDatumException {
+    public Date parseBis(String bisAngabe) throws UngueltigesDatumException {
         Date result = null;
+
         try {
-            result = parseMonatJahr(content);
+            result = parseMonatJahr(bisAngabe);
 
             Calendar source = Calendar.getInstance(Locale.GERMANY);
             source.setTime(result);
+
             int month = source.get(Calendar.MONTH);
             int year = source.get(Calendar.YEAR);
             int maxDay = source.getActualMaximum(Calendar.DAY_OF_MONTH);
-            Calendar c = Calendar.getInstance(Locale.GERMANY);
-            c.set(year, month, maxDay, 23, 59, 59);
-            c.set(Calendar.MILLISECOND, 0);
-            result = c.getTime();
+
+            setzeTagMonatJahr(month, year, maxDay);
+
+            result = calendar.getTime();
         } catch (UngueltigesDatumException e) {
             try {
-                int year = Integer.parseInt(content);
+                int year = Integer.parseInt(bisAngabe);
 
-                Calendar c = Calendar.getInstance(Locale.GERMANY);
-                c.set(year, 11, 31, 23, 59, 59);
-                c.set(Calendar.MILLISECOND, 0);
-                result = c.getTime();
+                setzeTagMonatJahr(Calendar.DECEMBER, year, 31);
+                result = calendar.getTime();
             } catch (IllegalFormatException e1) {
                 throw new UngueltigesDatumException(e1);
             }
         }
         return result;
+    }
+
+    private void setzeTagMonatJahr(int month, int year, int maxDay) {
+        calendar.set(year, month, maxDay, 23, 59, 59);
+        calendar.set(Calendar.MILLISECOND, 999);
     }
 
     private Date parseJahr(String content) throws UngueltigesDatumException {

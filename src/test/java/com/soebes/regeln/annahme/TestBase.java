@@ -19,7 +19,7 @@ public class TestBase {
     public static Date parseDate(String dateStr) {
         Date d = null;
         try {
-            DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+            DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss.SSS");
             d = (Date) formatter.parse(dateStr);
         } catch (ParseException e) {
             System.err.println("Date format is wrong: " + e.getMessage());
