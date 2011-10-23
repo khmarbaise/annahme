@@ -29,6 +29,7 @@ public class ZeitpunktParser {
         Date result = null;
         try {
             result = parseMonatJahr(content);
+
             Calendar source = Calendar.getInstance(Locale.GERMANY);
             source.setTime(result);
             int month = source.get(Calendar.MONTH);
@@ -41,6 +42,7 @@ public class ZeitpunktParser {
         } catch (UngueltigesDatumException e) {
             try {
                 int year = Integer.parseInt(content);
+
                 Calendar c = Calendar.getInstance(Locale.GERMANY);
                 c.set(year, 11, 31, 23, 59, 59);
                 c.set(Calendar.MILLISECOND, 0);

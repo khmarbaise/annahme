@@ -30,7 +30,7 @@ public class AnnahmeRegelParser {
 
         String[] zeitPunkte = elemente[1].split("-");
         ZeitpunktParser zeitPunktParser = new ZeitpunktParser();
-        
+
         Date von = zeitPunktParser.parse(zeitPunkte[0]);
 
         Date bis = zeitPunktParser.parse(zeitPunkte[1]);
