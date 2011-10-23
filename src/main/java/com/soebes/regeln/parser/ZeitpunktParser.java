@@ -11,7 +11,7 @@ import java.util.Locale;
 public class ZeitpunktParser {
 //            DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 
-    public Date parse(String content) throws UngueltigesDatumException {
+    public Date parseVon(String content) throws UngueltigesDatumException {
         Date result = null;
         try {
             result = parseMonatJahr(content);

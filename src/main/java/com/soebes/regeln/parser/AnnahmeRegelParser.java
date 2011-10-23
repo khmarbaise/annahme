@@ -31,9 +31,9 @@ public class AnnahmeRegelParser {
         String[] zeitPunkte = elemente[1].split("-");
         ZeitpunktParser zeitPunktParser = new ZeitpunktParser();
 
-        Date von = zeitPunktParser.parse(zeitPunkte[0]);
+        Date von = zeitPunktParser.parseVon(zeitPunkte[0]);
 
-        Date bis = zeitPunktParser.parse(zeitPunkte[1]);
+        Date bis = zeitPunktParser.parseBis(zeitPunkte[1]);
         
         resultRegel.setAnnahmeZeitraum(new Zeitraum(von, bis));
 

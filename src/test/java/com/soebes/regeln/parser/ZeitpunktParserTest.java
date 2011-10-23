@@ -11,38 +11,37 @@ import com.soebes.regeln.annahme.TestBase;
 public class ZeitpunktParserTest extends TestBase {
 
     @Test
-    public void monatUndJahr() throws UngueltigesDatumException, UnbekannteArtException {
+    public void parseVonMonatUndJahr() throws UngueltigesDatumException, UnbekannteArtException {
         final String regel = "02.2010";
         ZeitpunktParser zpp = new ZeitpunktParser();
         
-        Date result = zpp.parse(regel);
+        Date result = zpp.parseVon(regel);
 
         assertEquals(result, parseDate("01.02.2010 00:00:00"));
     }
 
     @Test
-    public void monatUndJahrOhneFuehrendeNull() throws UngueltigesDatumException, UnbekannteArtException {
+    public void parseVonMonatUndJahrOhneFuehrendeNull() throws UngueltigesDatumException, UnbekannteArtException {
         final String regel = "2.2010";
         ZeitpunktParser zpp = new ZeitpunktParser();
-        
-        Date result = zpp.parse(regel);
+
+        Date result = zpp.parseVon(regel);
 
         assertEquals(result, parseDate("01.02.2010 00:00:00"));
     }
 
-
     @Test
-    public void nurJahresAngabe() throws UngueltigesDatumException, UnbekannteArtException {
+    public void parseVonNurJahresAngabe() throws UngueltigesDatumException, UnbekannteArtException {
         final String regel = "2010";
         ZeitpunktParser zpp = new ZeitpunktParser();
         
-        Date result = zpp.parse(regel);
+        Date result = zpp.parseVon(regel);
 
         assertEquals(result, parseDate("01.01.2010 00:00:00"));
     }
 
     @Test
-    public void nurJahresAngabeBis() throws UngueltigesDatumException, UnbekannteArtException {
+    public void parseBisNurJahresAngabe() throws UngueltigesDatumException, UnbekannteArtException {
         final String regel = "2010";
         ZeitpunktParser zpp = new ZeitpunktParser();
         
@@ -52,7 +51,7 @@ public class ZeitpunktParserTest extends TestBase {
     }
 
     @Test
-    public void monatUndJahrAngabeBis() throws UngueltigesDatumException, UnbekannteArtException {
+    public void parseBisMonatUndJahrAngabe() throws UngueltigesDatumException, UnbekannteArtException {
         final String regel = "02.2010";
         ZeitpunktParser zpp = new ZeitpunktParser();
         
