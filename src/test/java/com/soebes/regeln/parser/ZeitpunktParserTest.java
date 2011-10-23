@@ -41,14 +41,35 @@ public class ZeitpunktParserTest extends TestBase {
         assertEquals(result, parseDate("01.01.2010 00:00:00"));
     }
 
-
     @Test
-    public void nochmalPruefenAufDieFalscheAngabe() throws UngueltigesDatumException, UnbekannteArtException {
-        final String regel = "13.2010";
+    public void nurJahresAngabeBis() throws UngueltigesDatumException, UnbekannteArtException {
+        final String regel = "2010";
         ZeitpunktParser zpp = new ZeitpunktParser();
         
-        Date result = zpp.parse(regel);
-
-        assertEquals(result, parseDate("01.12.2010 00:00:00"));
+        Date result = zpp.parseBis(regel);
+        Date expected = parseDate("31.12.2010 23:59:59");
+        assertEquals(result, expected);
     }
+
+    @Test
+    public void monatUndJahrAngabeBis() throws UngueltigesDatumException, UnbekannteArtException {
+        final String regel = "02.2010";
+        ZeitpunktParser zpp = new ZeitpunktParser();
+        
+        Date result = zpp.parseBis(regel);
+        Date expected = parseDate("28.02.2010 23:59:59");
+        assertEquals(result, expected);
+    }
+
+
+//    @Test
+//    public void nochmalPruefenAufDieFalscheAngabe() throws UngueltigesDatumException, UnbekannteArtException {
+//        final String regel = "13.2010";
+//        ZeitpunktParser zpp = new ZeitpunktParser();
+//        
+//        Date result = zpp.parse(regel);
+//
+//        Date expected = parseDate("01.12.2010 00:00:00");
+//        assertEquals(result, expected);
+//    }
 }
