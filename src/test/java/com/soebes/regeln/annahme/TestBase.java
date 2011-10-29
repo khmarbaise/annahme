@@ -19,6 +19,17 @@ public class TestBase {
     public static Date parseDate(String dateStr) {
         Date d = null;
         try {
+            DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+            d = (Date) formatter.parse(dateStr);
+        } catch (ParseException e) {
+            System.err.println("Date format is wrong: " + e.getMessage());
+        }
+        return d;
+    }
+
+    public static Date parseDateMilliSeconds(String dateStr) {
+        Date d = null;
+        try {
             DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss.SSS");
             d = (Date) formatter.parse(dateStr);
         } catch (ParseException e) {
@@ -26,4 +37,5 @@ public class TestBase {
         }
         return d;
     }
+
 }
