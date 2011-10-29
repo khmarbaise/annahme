@@ -16,7 +16,7 @@ public class RegelParser {
         } else if (contents.equalsIgnoreCase(DEAKTIVIERT)) {
             result = Regel.DEAKTIVIERT;
         } else {
-            throw new UnbekannteRegelException("Die Regel ist unbekannt.!");
+            throw new UnbekannteRegelException("Die Regel " + contents + " ist unbekannt.!");
         }
         return result;
     }
