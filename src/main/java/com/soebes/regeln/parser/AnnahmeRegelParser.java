@@ -26,32 +26,38 @@ public class AnnahmeRegelParser {
                 UnbekannteArtException, 
                 UngueltigeAnzahlVersionException, 
                 UngueltigeVersionException {
+
         AnnahmeRegel resultRegel = new AnnahmeRegel();
         String[] elemente = regel.split(",");
-        
-     
+
         ArtParser artParse = new ArtParser();
         resultRegel.setArt(artParse.parse(elemente[0]));
 
-        parseZeitRaum(resultRegel, elemente);
+        resultRegel.setAnnahmeZeitraum(parseZeitRaum(elemente[1]));
 
         VersionParser versionVonBisParser = new VersionParser ();
         resultRegel.setVersionVonBis(versionVonBisParser.parse(elemente[2]));
-        
+
         resultRegel.setDetailVersionVonBis(versionVonBisParser.parse(elemente[3]));
 
         return resultRegel;
         
     }
 
-    private void parseZeitRaum(AnnahmeRegel resultRegel, String[] elemente) throws UngueltigesDatumException {
-        String[] zeitPunkte = elemente[1].split("-");
+    /**
+     * Zeitraum in der Form <code>von-bis</code>
+     * @param elemente <code>von-bis</code>
+     * @return Zeitraum Instanz
+     * @throws UngueltigesDatumException im Falle eines Fehlers.
+     */
+    private Zeitraum parseZeitRaum(String elemente) throws UngueltigesDatumException {
+        String[] zeitPunkte = elemente.split("-");
         ZeitpunktParser zeitPunktParser = new ZeitpunktParser();
 
         Date von = zeitPunktParser.parseVon(zeitPunkte[0]);
 
         Date bis = zeitPunktParser.parseBis(zeitPunkte[1]);
         
-        resultRegel.setAnnahmeZeitraum(new Zeitraum(von, bis));
+        return new Zeitraum(von, bis);
     }
 }

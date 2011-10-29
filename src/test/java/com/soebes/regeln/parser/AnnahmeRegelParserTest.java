@@ -20,10 +20,13 @@ public class AnnahmeRegelParserTest extends TestBase {
         AnnahmeRegel geparsteRegel = arp.parse(regel);
 
         assertTrue(geparsteRegel.getArt().equals(Arten.A));
-        assertEquals(geparsteRegel.getAnnahmeZeitraum(), new Zeitraum(parseDateMilliSeconds("01.02.2010 00:00:00.000"), parseDateMilliSeconds("30.09.2099 23:59:59.999")));
         assertEquals(geparsteRegel.getVersionVonBis(), new VersionsBereich(1, 2));
         assertEquals(geparsteRegel.getDetailVersionVonBis(), new VersionsBereich(1, 3));
 
+        assertEquals(
+            geparsteRegel.getAnnahmeZeitraum(), 
+            new Zeitraum(parseDateMilliSeconds("01.02.2010 00:00:00.000"), parseDateMilliSeconds("30.09.2099 23:59:59.999"))
+        );
     }
 
 }

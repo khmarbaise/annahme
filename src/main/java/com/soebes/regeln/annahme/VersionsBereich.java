@@ -31,6 +31,36 @@ public class VersionsBereich {
     public void setBis(int bis) {
         this.bis = bis;
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + bis;
+        result = prime * result + von;
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof VersionsBereich)) {
+            return false;
+        }
+        VersionsBereich other = (VersionsBereich) obj;
+        if (bis != other.bis) {
+            return false;
+        }
+        if (von != other.von) {
+            return false;
+        }
+        return true;
+    }
     
     
 }
