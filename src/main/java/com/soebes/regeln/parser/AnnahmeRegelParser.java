@@ -3,7 +3,7 @@ package com.soebes.regeln.parser;
 import java.util.Date;
 
 import com.soebes.regeln.annahme.AnnahmeRegel;
-import com.soebes.regeln.annahme.VersionsBereich;
+import com.soebes.regeln.annahme.Regel;
 import com.soebes.regeln.annahme.Zeitraum;
 
 public class AnnahmeRegelParser {
@@ -18,14 +18,35 @@ public class AnnahmeRegelParser {
 //
 
     public AnnahmeRegelParser() {
-//        annahmeRegel = new AnnahmeRegel();
     }
 
+    public boolean isDeaktiviert(String regel) {
+        boolean result = true;
+        String[] elemente = regel.split(",");
+        if (elemente.length != 5) {
+            result = false;
+        }
+
+        RegelParser rp = new RegelParser();
+        Regel geparsteRegel = Regel.NULL_REGEL;
+        try {
+            geparsteRegel = rp.parse(elemente[4]);
+        } catch (UnbekannteRegelException e) {
+            result = false;
+        }
+
+        if (geparsteRegel != Regel.DEAKTIVIERT) {
+            result = false;
+        }
+        
+        return result;
+        
+    }
     public AnnahmeRegel parse(String regel) 
         throws UngueltigesDatumException, 
                 UnbekannteArtException, 
                 UngueltigeAnzahlVersionException, 
-                UngueltigeVersionException {
+                UngueltigeVersionException, UnbekannteRegelException {
 
         AnnahmeRegel resultRegel = new AnnahmeRegel();
         String[] elemente = regel.split(",");
@@ -39,6 +60,13 @@ public class AnnahmeRegelParser {
         resultRegel.setVersionVonBis(versionVonBisParser.parse(elemente[2]));
 
         resultRegel.setDetailVersionVonBis(versionVonBisParser.parse(elemente[3]));
+
+        if (elemente.length == 4) {
+            resultRegel.setRegel(Regel.NULL_REGEL);
+        } else {
+            RegelParser regelParser = new RegelParser();
+            resultRegel.setRegel(regelParser.parse(elemente[4]));
+        }
 
         return resultRegel;
         
