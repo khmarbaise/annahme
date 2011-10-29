@@ -1,6 +1,7 @@
 package com.soebes.regeln.parser;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 import org.testng.annotations.Test;
@@ -48,4 +49,17 @@ public class AnnahmeRegelParserTest extends TestBase {
         assertEquals(geparsteRegel.getRegel(), Regel.NULL_REGEL);
     }
 
+    @Test
+    public void parseUnvollstaendigeRegelIsDeaktiviertFalse()  {
+        final String regel = "A, 02.2010-09.2099, 1-2, 1-3";
+        AnnahmeRegelParser arp = new AnnahmeRegelParser();
+        assertFalse(arp.isDeaktiviert(regel));
+    }
+
+    @Test
+    public void parseUnvollstaendigeRegelIsDeaktiviertTrue()  {
+        final String regel = "A, 02.2010-09.2099, 1-2, 1-3,deaktiviert";
+        AnnahmeRegelParser arp = new AnnahmeRegelParser();
+        assertTrue(arp.isDeaktiviert(regel));
+    }
 }

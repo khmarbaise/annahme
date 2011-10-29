@@ -21,10 +21,9 @@ public class AnnahmeRegelParser {
     }
 
     public boolean isDeaktiviert(String regel) {
-        boolean result = true;
         String[] elemente = regel.split(",");
         if (elemente.length != 5) {
-            result = false;
+            return false;
         }
 
         RegelParser rp = new RegelParser();
@@ -32,14 +31,14 @@ public class AnnahmeRegelParser {
         try {
             geparsteRegel = rp.parse(elemente[4]);
         } catch (UnbekannteRegelException e) {
-            result = false;
+            return false;
         }
 
         if (geparsteRegel != Regel.DEAKTIVIERT) {
-            result = false;
+            return false;
         }
         
-        return result;
+        return true;
         
     }
     public AnnahmeRegel parse(String regel) 
