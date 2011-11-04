@@ -20,11 +20,11 @@ public class Zeitraum {
             result = true;
         }
 
-        if (current.equals(getVon()) && current.before(getBis())) {
+        if (current.equals(getVon())) {
             result = true;
         }
         
-        if (current.equals(getBis()) && current.after(getVon())) {
+        if (current.equals(getBis())) {
             result = true;
         }
 
