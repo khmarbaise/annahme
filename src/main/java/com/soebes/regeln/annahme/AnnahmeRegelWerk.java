@@ -22,7 +22,7 @@ public class AnnahmeRegelWerk {
     }
     
     public void fuegeRegelHinzu(AnnahmeRegel regel) {
-        if (annahmeRegeln.containsKey(regel.getArt())) {
+        if (istRegelVorhandenFuerArt(regel.getArt())) {
             ArrayList<AnnahmeRegel> regeln = annahmeRegeln.get(regel.getArt());
             regeln.add(regel);
         } else {
@@ -35,7 +35,7 @@ public class AnnahmeRegelWerk {
     public boolean annahme(Arten art, int version, int detailVersion, Date veranlagungsZeit, Date eingangsZeit) {
         boolean result = false;
         
-        if (annahmeRegeln.containsKey(art)) {
+        if (istRegelVorhandenFuerArt(art)) {
             for (AnnahmeRegel regel : annahmeRegeln.get(art)) {
                 if (regel.annehmen(art, version, detailVersion, veranlagungsZeit, eingangsZeit)) {
                     result = true;
@@ -44,5 +44,9 @@ public class AnnahmeRegelWerk {
         }
 
         return result;
+    }
+
+    private boolean istRegelVorhandenFuerArt(Arten art) {
+        return annahmeRegeln.containsKey(art);
     }
 }
