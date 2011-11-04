@@ -4,7 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * [VZ=Eing+1|gelöscht|(leer)]
+ * [VZ=Eing+1|deaktiviert|(leer)]
  * 
  * @author kama
  *
