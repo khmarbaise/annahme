@@ -21,9 +21,10 @@ public class ArtParserTest {
         assertTrue(a.equals(Arten.A));
     }
 
-    @Test(expectedExceptions = {UnbekannteArtException.class} )
+    @Test
     public void bekannteArtKleinGeschrieben() throws UnbekannteArtException {
         ArtParser p = new ArtParser();
-        p.parse("a");
+        Arten a = p.parse("a");
+        assertTrue(a.equals(Arten.A));
     }
 }

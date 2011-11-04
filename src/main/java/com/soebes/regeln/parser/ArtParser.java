@@ -8,7 +8,7 @@ public class ArtParser {
         Arten art = Arten.A;
         
         try {
-            art = Arten.valueOf(content);
+            art = Arten.valueOf(content.trim().toUpperCase());
         } catch (IllegalArgumentException e) {
             throw new UnbekannteArtException("Die angegebene Art " + content + " ist unbekannt.");
         }
