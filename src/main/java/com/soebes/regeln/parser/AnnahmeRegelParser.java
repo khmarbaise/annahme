@@ -1,10 +1,7 @@
 package com.soebes.regeln.parser;
 
-import java.util.Date;
-
 import com.soebes.regeln.annahme.AnnahmeRegel;
 import com.soebes.regeln.annahme.Regel;
-import com.soebes.regeln.annahme.Zeitraum;
 
 public class AnnahmeRegelParser {
 
@@ -45,7 +42,7 @@ public class AnnahmeRegelParser {
         throws UngueltigesDatumException, 
                 UnbekannteArtException, 
                 UngueltigeAnzahlVersionException, 
-                UngueltigeVersionException, UnbekannteRegelException {
+                UngueltigeVersionException, UnbekannteRegelException, UngueltigesDatumFormatException {
 
         AnnahmeRegel resultRegel = new AnnahmeRegel();
         String[] elemente = regel.split(",");
@@ -53,7 +50,8 @@ public class AnnahmeRegelParser {
         ArtParser artParse = new ArtParser();
         resultRegel.setArt(artParse.parse(elemente[0]));
 
-        resultRegel.setAnnahmeZeitraum(parseZeitRaum(elemente[1]));
+        ZeitpunktParser zeitpunktParse = new ZeitpunktParser();
+        resultRegel.setAnnahmeZeitraum(zeitpunktParse.parse(elemente[1]));
 
         VersionParser versionVonBisParser = new VersionParser ();
         resultRegel.setVersionVonBis(versionVonBisParser.parse(elemente[2]));
@@ -71,20 +69,4 @@ public class AnnahmeRegelParser {
         
     }
 
-    /**
-     * Zeitraum in der Form <code>von-bis</code>
-     * @param elemente <code>von-bis</code>
-     * @return Zeitraum Instanz
-     * @throws UngueltigesDatumException im Falle eines Fehlers.
-     */
-    private Zeitraum parseZeitRaum(String elemente) throws UngueltigesDatumException {
-        String[] zeitPunkte = elemente.split("-");
-        ZeitpunktParser zeitPunktParser = new ZeitpunktParser();
-
-        Date von = zeitPunktParser.parseVon(zeitPunkte[0]);
-
-        Date bis = zeitPunktParser.parseBis(zeitPunkte[1]);
-        
-        return new Zeitraum(von, bis);
-    }
 }

@@ -11,7 +11,7 @@ import com.soebes.regeln.annahme.TestBase;
 public class ZeitpunktParserTest extends TestBase {
 
     @Test
-    public void parseVonMonatUndJahr() throws UngueltigesDatumException, UnbekannteArtException {
+    public void parseVonMonatUndJahr() throws UngueltigesDatumException, UnbekannteArtException, UngueltigesDatumFormatException {
         final String regel = "02.2010";
         ZeitpunktParser zpp = new ZeitpunktParser();
         
@@ -21,7 +21,7 @@ public class ZeitpunktParserTest extends TestBase {
     }
 
     @Test
-    public void parseVonMonatUndJahrOhneFuehrendeNull() throws UngueltigesDatumException, UnbekannteArtException {
+    public void parseVonMonatUndJahrOhneFuehrendeNull() throws UngueltigesDatumException, UnbekannteArtException, UngueltigesDatumFormatException {
         final String regel = "2.2010";
         ZeitpunktParser zpp = new ZeitpunktParser();
 
@@ -31,7 +31,7 @@ public class ZeitpunktParserTest extends TestBase {
     }
 
     @Test
-    public void parseVonNurJahresAngabe() throws UngueltigesDatumException, UnbekannteArtException {
+    public void parseVonNurJahresAngabe() throws UngueltigesDatumException, UnbekannteArtException, UngueltigesDatumFormatException {
         final String regel = "2010";
         ZeitpunktParser zpp = new ZeitpunktParser();
         
@@ -41,7 +41,7 @@ public class ZeitpunktParserTest extends TestBase {
     }
 
     @Test
-    public void parseBisNurJahresAngabe() throws UngueltigesDatumException, UnbekannteArtException {
+    public void parseBisNurJahresAngabe() throws UngueltigesDatumException, UnbekannteArtException, UngueltigesDatumFormatException {
         final String regel = "2010";
         ZeitpunktParser zpp = new ZeitpunktParser();
         
@@ -51,7 +51,7 @@ public class ZeitpunktParserTest extends TestBase {
     }
 
     @Test
-    public void parseBisMonatUndJahrAngabe() throws UngueltigesDatumException, UnbekannteArtException {
+    public void parseBisMonatUndJahrAngabe() throws UngueltigesDatumException, UnbekannteArtException, UngueltigesDatumFormatException {
         final String regel = "02.2010";
         ZeitpunktParser zpp = new ZeitpunktParser();
         
@@ -61,14 +61,14 @@ public class ZeitpunktParserTest extends TestBase {
     }
 
 
-//    @Test
-//    public void nochmalPruefenAufDieFalscheAngabe() throws UngueltigesDatumException, UnbekannteArtException {
-//        final String regel = "13.2010";
-//        ZeitpunktParser zpp = new ZeitpunktParser();
-//        
-//        Date result = zpp.parse(regel);
-//
-//        Date expected = parseDate("01.12.2010 00:00:00");
-//        assertEquals(result, expected);
-//    }
+    @Test(expectedExceptions = { UngueltigesDatumException.class })
+    public void parseUngueltigesDatumVon() throws UngueltigesDatumException, UnbekannteArtException, UngueltigesDatumFormatException {
+        final String regel = "13.2010";
+        ZeitpunktParser zpp = new ZeitpunktParser();
+        
+        Date result = zpp.parseVon(regel);
+
+        Date expected = parseDate("01.12.2010 00:00:00");
+        assertEquals(result, expected);
+    }
 }

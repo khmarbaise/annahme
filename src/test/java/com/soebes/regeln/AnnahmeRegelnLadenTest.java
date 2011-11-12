@@ -15,11 +15,12 @@ import com.soebes.regeln.parser.UnbekannteRegelException;
 import com.soebes.regeln.parser.UngueltigeAnzahlVersionException;
 import com.soebes.regeln.parser.UngueltigeVersionException;
 import com.soebes.regeln.parser.UngueltigesDatumException;
+import com.soebes.regeln.parser.UngueltigesDatumFormatException;
 
 public class AnnahmeRegelnLadenTest extends TestBase {
 
     @Test
-    public void regelnLaden() throws UngueltigesDatumException, UnbekannteArtException, UngueltigeAnzahlVersionException, UngueltigeVersionException, UnbekannteRegelException {
+    public void regelnLaden() throws UngueltigesDatumException, UnbekannteArtException, UngueltigeAnzahlVersionException, UngueltigeVersionException, UnbekannteRegelException, UngueltigesDatumFormatException {
         String[] regeln = {
                 "A, 02.2010-09.2099, 1-2, 1-3,VZ=Eing+1",
                 "A, 02.2010-09.2099, 1-2, 4-7,deaktiviert",
