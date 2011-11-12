@@ -11,12 +11,13 @@ import com.soebes.regeln.annahme.Arten;
 import com.soebes.regeln.annahme.Regel;
 import com.soebes.regeln.annahme.TestBase;
 import com.soebes.regeln.annahme.VersionsBereich;
+import com.soebes.regeln.annahme.VersionsBereichVonBisVertauschtExepction;
 import com.soebes.regeln.annahme.Zeitraum;
 
 public class AnnahmeRegelParserTest extends TestBase {
 
     @Test
-    public void parseVollstaendigeRegel() throws UngueltigesDatumException, UnbekannteArtException, UngueltigeAnzahlVersionException, UngueltigeVersionException, UnbekannteRegelException, UngueltigesDatumFormatException {
+    public void parseVollstaendigeRegel() throws UngueltigesDatumException, UnbekannteArtException, UngueltigeAnzahlVersionException, UngueltigeVersionException, UnbekannteRegelException, UngueltigesDatumFormatException, VersionsBereichVonBisVertauschtExepction {
         final String regel = "A, 02.2010-09.2099, 1-2, 1-3,VZ=Eing+1";
         AnnahmeRegelParser arp = new AnnahmeRegelParser();
         AnnahmeRegel geparsteRegel = arp.parse(regel);
@@ -33,7 +34,7 @@ public class AnnahmeRegelParserTest extends TestBase {
     }
 
     @Test
-    public void parseUnvollstaendigeRegel() throws UngueltigesDatumException, UnbekannteArtException, UngueltigeAnzahlVersionException, UngueltigeVersionException, UnbekannteRegelException, UngueltigesDatumFormatException {
+    public void parseUnvollstaendigeRegel() throws UngueltigesDatumException, UnbekannteArtException, UngueltigeAnzahlVersionException, UngueltigeVersionException, UnbekannteRegelException, UngueltigesDatumFormatException, VersionsBereichVonBisVertauschtExepction {
         final String regel = "A, 02.2010-09.2099, 1-2, 1-3";
         AnnahmeRegelParser arp = new AnnahmeRegelParser();
         AnnahmeRegel geparsteRegel = arp.parse(regel);

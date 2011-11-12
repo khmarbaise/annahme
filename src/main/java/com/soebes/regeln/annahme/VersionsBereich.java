@@ -5,8 +5,11 @@ public class VersionsBereich {
     private int von;
     private int bis;
 
-    public VersionsBereich(int von, int bis) {
+    public VersionsBereich(int von, int bis) throws VersionsBereichVonBisVertauschtExepction {
         super();
+        if (von > bis) {
+            throw new VersionsBereichVonBisVertauschtExepction("Es muss die Bedinung von <= bis gelten.");
+        }
         this.von = von;
         this.bis = bis;
     }

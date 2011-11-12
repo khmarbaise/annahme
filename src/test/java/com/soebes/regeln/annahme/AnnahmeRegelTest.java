@@ -11,7 +11,7 @@ public class AnnahmeRegelTest extends TestBase {
     private AnnahmeRegel annahme;
 
     @BeforeClass
-    public void beforeClass() {
+    public void beforeClass() throws VersionsBereichVonBisVertauschtExepction {
         annahme = new AnnahmeRegel(
             Arten.A, 
             new Zeitraum(parseDate("01.07.2010 00:00:00"), parseDate("30.06.2011 23:59:59")), 

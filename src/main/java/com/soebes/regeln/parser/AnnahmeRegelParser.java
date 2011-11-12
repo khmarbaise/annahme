@@ -2,6 +2,7 @@ package com.soebes.regeln.parser;
 
 import com.soebes.regeln.annahme.AnnahmeRegel;
 import com.soebes.regeln.annahme.Regel;
+import com.soebes.regeln.annahme.VersionsBereichVonBisVertauschtExepction;
 
 public class AnnahmeRegelParser {
 
@@ -42,7 +43,7 @@ public class AnnahmeRegelParser {
         throws UngueltigesDatumException, 
                 UnbekannteArtException, 
                 UngueltigeAnzahlVersionException, 
-                UngueltigeVersionException, UnbekannteRegelException, UngueltigesDatumFormatException {
+                UngueltigeVersionException, UnbekannteRegelException, UngueltigesDatumFormatException, VersionsBereichVonBisVertauschtExepction {
 
         AnnahmeRegel resultRegel = new AnnahmeRegel();
         String[] elemente = regel.split(",");
@@ -53,7 +54,7 @@ public class AnnahmeRegelParser {
         ZeitraumParser zeitpunktParse = new ZeitraumParser();
         resultRegel.setAnnahmeZeitraum(zeitpunktParse.parse(elemente[1]));
 
-        VersionParser versionVonBisParser = new VersionParser ();
+        VersionsBereichParser versionVonBisParser = new VersionsBereichParser ();
         resultRegel.setVersionVonBis(versionVonBisParser.parse(elemente[2]));
 
         resultRegel.setDetailVersionVonBis(versionVonBisParser.parse(elemente[3]));

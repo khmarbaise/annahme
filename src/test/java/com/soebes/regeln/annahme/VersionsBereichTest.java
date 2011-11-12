@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 public class VersionsBereichTest {
 
     @Test
-    public void containsMitUnterschiedlichenGrenzen() {
+    public void containsMitUnterschiedlichenGrenzen() throws VersionsBereichVonBisVertauschtExepction {
         VersionsBereich vonBis = new VersionsBereich(1, 3);
         assertTrue(vonBis.contains(1));
         assertTrue(vonBis.contains(2));
@@ -19,7 +19,7 @@ public class VersionsBereichTest {
     }
 
     @Test
-    public void containsMitIdentischenGrenzen() {
+    public void containsMitIdentischenGrenzen() throws VersionsBereichVonBisVertauschtExepction {
         VersionsBereich vonBis = new VersionsBereich(2, 2);
         assertTrue(vonBis.contains(2));
 

@@ -1,10 +1,11 @@
 package com.soebes.regeln.parser;
 
 import com.soebes.regeln.annahme.VersionsBereich;
+import com.soebes.regeln.annahme.VersionsBereichVonBisVertauschtExepction;
 
-public class VersionParser {
+public class VersionsBereichParser {
 
-    public VersionsBereich parse(String verisonVonBis) throws UngueltigeAnzahlVersionException, UngueltigeVersionException {
+    public VersionsBereich parse(String verisonVonBis) throws UngueltigeAnzahlVersionException, UngueltigeVersionException, VersionsBereichVonBisVertauschtExepction {
         String[] vonBis = verisonVonBis.split("-");
         
         if (vonBis.length != 2) {
