@@ -10,24 +10,24 @@ import java.util.regex.Pattern;
 
 import com.soebes.regeln.annahme.Zeitraum;
 
-public class ZeitpunktParser {
+public class ZeitraumParser {
     private Calendar calendar = Calendar.getInstance(Locale.GERMANY);
 
     private static final Pattern DATE_PATTERN_MONTH_YEAR = Pattern.compile("\\d{1,2}\\.\\d{4}");
     private static final Pattern DATE_PATTERN_YEAR = Pattern.compile("\\d{4}");
     
     public Zeitraum parse(String zeitraum) throws UngueltigesDatumException, UngueltigesDatumFormatException {
-        String[] zeitPunkte = zeitraum.trim().split("-");
+        String[] zeitRaumVonBis = zeitraum.trim().split("-");
 
-        Date von = parseVon(zeitPunkte[0]);
+        Date von = parseVon(zeitRaumVonBis[0]);
 
-        Date bis = parseBis(zeitPunkte[1]);
+        Date bis = parseBis(zeitRaumVonBis[1]);
         
         return new Zeitraum(von, bis);
         
     }
 
-    public Date parseVon(String vonAngabe) throws UngueltigesDatumException, UngueltigesDatumFormatException {
+    private Date parseVon(String vonAngabe) throws UngueltigesDatumException, UngueltigesDatumFormatException {
         Date result = null;
 
         if (DATE_PATTERN_MONTH_YEAR.matcher(vonAngabe).matches()) {
@@ -35,13 +35,13 @@ public class ZeitpunktParser {
         } else if (DATE_PATTERN_YEAR.matcher(vonAngabe).matches()) {
             result = parseJahr(vonAngabe);
         } else {
-            throw new UngueltigesDatumFormatException("Das angegebene Datum hat ein ungueltiges format.");
+            throw new UngueltigesDatumFormatException("Das angegebene Datum von hat ein ungueltiges format.");
         }
 
         return result;
     }
 
-    public Date parseBis(String bisAngabe) throws UngueltigesDatumException, UngueltigesDatumFormatException {
+    private Date parseBis(String bisAngabe) throws UngueltigesDatumException, UngueltigesDatumFormatException {
         Date result = null;
 
         if (DATE_PATTERN_MONTH_YEAR.matcher(bisAngabe).matches()) {
@@ -63,7 +63,7 @@ public class ZeitpunktParser {
             setzeTagMonatJahr(Calendar.DECEMBER, year, 31);
             result = calendar.getTime();
         } else {
-            throw new UngueltigesDatumFormatException("Das angegebene Datum hat ein ungueltiges format.");
+            throw new UngueltigesDatumFormatException("Das angegebene Datum bis hat ein ungueltiges format.");
         }
         
         return result;

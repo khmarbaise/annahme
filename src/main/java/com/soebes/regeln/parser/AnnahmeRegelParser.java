@@ -50,7 +50,7 @@ public class AnnahmeRegelParser {
         ArtParser artParse = new ArtParser();
         resultRegel.setArt(artParse.parse(elemente[0]));
 
-        ZeitpunktParser zeitpunktParse = new ZeitpunktParser();
+        ZeitraumParser zeitpunktParse = new ZeitraumParser();
         resultRegel.setAnnahmeZeitraum(zeitpunktParse.parse(elemente[1]));
 
         VersionParser versionVonBisParser = new VersionParser ();
