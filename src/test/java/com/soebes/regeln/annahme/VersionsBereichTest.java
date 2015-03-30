@@ -1,30 +1,82 @@
 package com.soebes.regeln.annahme;
 
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
 
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class VersionsBereichTest {
+public class VersionsBereichTest
+{
 
-    @Test
-    public void containsMitUnterschiedlichenGrenzen() throws VersionsBereichVonBisVertauschtExepction {
-        VersionsBereich vonBis = new VersionsBereich(1, 3);
-        assertTrue(vonBis.contains(1));
-        assertTrue(vonBis.contains(2));
-        assertTrue(vonBis.contains(3));
+    public class GrenzenPruefen
+    {
+        private VersionsBereich vonBis;
 
-        assertFalse(vonBis.contains(0));
-        assertFalse(vonBis.contains(4));
+        @BeforeMethod
+        public void beforeMethod()
+            throws VersionsBereichVonBisVertauschtExepction
+        {
+            vonBis = new VersionsBereich( 1, 3 );
+        }
+
+        @Test
+        public void checkValueAtLowerLimit()
+        {
+            assertThat( vonBis.contains( 1 ) ).isTrue();
+        }
+
+        @Test
+        public void checkValueInTheMiddleOfTheLimits()
+        {
+            assertThat( vonBis.contains( 2 ) ).isTrue();
+        }
+
+        @Test
+        public void checkValueAtUpperLimit()
+        {
+            assertThat( vonBis.contains( 3 ) ).isTrue();
+        }
+
+        @Test
+        public void checkValueLessThanLowerLimit()
+        {
+            assertThat( vonBis.contains( 0 ) ).isFalse();
+        }
+
+        @Test
+        public void checkValueGreaterThanUpperLimit()
+        {
+            assertThat( vonBis.contains( 4 ) ).isFalse();
+        }
     }
 
-    @Test
-    public void containsMitIdentischenGrenzen() throws VersionsBereichVonBisVertauschtExepction {
-        VersionsBereich vonBis = new VersionsBereich(2, 2);
-        assertTrue(vonBis.contains(2));
+    public class CheckUpperAndLowerLimitAreEqual
+    {
+        private VersionsBereich vonBis;
 
-        assertFalse(vonBis.contains(1));
-        assertFalse(vonBis.contains(3));
+        @BeforeMethod
+        public void beforeMethod()
+            throws VersionsBereichVonBisVertauschtExepction
+        {
+            vonBis = new VersionsBereich( 2, 2 );
+        }
 
+        @Test
+        public void checkTheOnlyValidValue()
+        {
+            assertThat( vonBis.contains( 2 ) ).isTrue();
+        }
+
+        @Test
+        public void checkLessThanLowerLimit()
+        {
+            assertThat( vonBis.contains( 1 ) ).isFalse();
+        }
+
+        @Test
+        public void checkGreaterThanUpperLimit()
+        {
+            assertThat( vonBis.contains( 3 ) ).isFalse();
+        }
     }
 }
